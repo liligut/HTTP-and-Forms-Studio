@@ -1,19 +1,61 @@
 <!doctype html>
 
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./style.css">
+  <script ></script>
 	<script>
-		// TODO: create a handler
+
     window.addEventListener("load", function(){
-        // TODO: register the handler
+
+		  let form = document.querySelector('form');
+      let engines = document.getElementsByName("engine");
+      let error_radio = document.getElementById("error_radio");
+      for (let engine of engines){
+        engine.addEventListener("click", function(){
+          form.action = engine.value;
+          error_radio.innerHTML="";
+        });
+      }
+      let goButton = document.getElementById("go");
+      let error = document.getElementById("error");
+      let q = document.getElementById("q"); 
+      
+      goButton.addEventListener("click",function(event){
+        if (q.value === ""){
+            error.innerHTML= 'This field is requiered!';
+            error.style.color = 'red';
+            event.preventDefault();
+        }
+        let isEnginesChecked = false;
+        for (let engine of engines){
+          isEnginesChecked = isEnginesChecked || engine.checked;
+        }
+        if (!isEnginesChecked){
+            error_radio.innerHTML= 'Select a search engine';
+            error_radio.style.color = 'red';
+            event.preventDefault();
+        }
+      });  
+      q.addEventListener("click",function(){
+        error.innerHTML="";
+      });
     });
+    
 	</script>
 </head>
 
 <body>
-
-	<form id="searchForm">
+	<div class="card-row">
+    <form id="searchForm">
     <!-- TODO: add form elements -->
-	</form>
-
+      <input type="text" name="q" id="q"><span id="error"></span>
+      <input id="first-radio" type="radio" name="engine" value="https://www.google.com/search">Google
+      <input type="radio" name="engine" value="https://duckduckgo.com/">DuckDuckGo
+      <input type="radio" name="engine" value="https://www.bing.com/search">Bing
+      <input type="radio" name="engine" value="https://www.ask.com/web">Ask
+      <button id="go">Go!</button>
+      <span id="error_radio"></span>
+    </form>
+  </div>
 </body>
