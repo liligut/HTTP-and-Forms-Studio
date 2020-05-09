@@ -1,0 +1,19 @@
+.card-row{
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  box-shadow:  3px 0 5px black;
+  padding: 30px 70px;
+}
+.card-col{
+  display:flex;
+  flex-direction: column;
+  width: 100%;
+  box-shadow:  3px 0 5px black;
+}
+#first-radio{
+  margin-left: 2%;
+}
+form{
+  width: 100%;
+}
